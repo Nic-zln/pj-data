@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <div class="header-content">
+          <div class="logo">Dashboard</div>
+          <nav class="main-nav">
+            <a href="analyses.html" class="nav-link">Analyses</a>
+            <a href="journal.html" class="nav-link">Journal de bord</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="about.html" class="nav-link">À propos</a>
+          </nav>
+        </div>
+      </header>
+      <div class="container">
+        <div class="tabs-container">
+          <div class="tabs">
+            <button
+              class="tab active"
+              data-tab="entreprise-public"
+              onclick="openTab('entreprise-public')"
+            >
+              Entreprise Public
+            </button>
+            <button
+              class="tab"
+              data-tab="entreprise-privee"
+              onclick="openTab('entreprise-privee')"
+            >
+              Entreprise Privée
+            </button>
+            <button
+              class="tab"
+              data-tab="association"
+              onclick="openTab('association')"
+            >
+              Association
+            </button>
+            <button
+              class="tab"
+              data-tab="personnes"
+              onclick="openTab('personnes')"
+            >
+              Personnes
+            </button>
+          </div>
+
+          <div id="entreprise-public" class="tab-content active">
+            <h2 class="tab-title">Entreprises Publiques</h2>
+            <div class="form-container">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="siren-epub">Siren</label>
+                  <input
+                    type="text"
+                    id="siren-epub"
+                    class="form-input"
+                    placeholder="Entrez le Siren"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="siret-epub">Siret</label>
+                  <input
+                    type="text"
+                    id="siret-epub"
+                    class="form-input"
+                    placeholder="Entrez le Siret"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="raison-epub">Raison sociale</label>
+                  <input
+                    type="text"
+                    id="raison-epub"
+                    class="form-input"
+                    placeholder="Entrez la raison sociale"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="forme-epub">Forme juridique</label>
+                  <input
+                    type="text"
+                    id="forme-epub"
+                    class="form-input"
+                    placeholder="Entrez la forme juridique"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adresse-epub">Adresse normée ligne 1</label>
+                  <input
+                    type="text"
+                    id="adresse-epub"
+                    class="form-input"
+                    placeholder="Entrez l'adresse"
+                  />
+                </div>
+              </div>
+              <button
+                class="btn btn-primary"
+                onclick="ajouterEntreprisePublique()"
+              >
+                Ajouter
+              </button>
+            </div>
+            <div class="table-container">
+              <div class="table-responsive">
+                <table id="entreprises-publiques-table">
+                  <thead>
+                    <tr>
+                      <th>Siren</th>
+                      <th>Siret</th>
+                      <th>Raison sociale</th>
+                      <th>Forme juridique</th>
+                      <th>Adresse normée ligne 1</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="6">
+                        <div class="empty-state">
+                          <div class="empty-state-icon"></div>
+                          <div class="empty-state-text">
+                            Aucune entreprise publique
+                          </div>
+                          <div class="empty-state-subtext">
+                            Ajoutez votre première entreprise publique ci-dessus
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="entreprise-privee" class="tab-content">
+            <h2 class="tab-title">Entreprises Privées</h2>
+            <div class="form-container">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="siren-epr">Siren</label>
+                  <input
+                    type="text"
+                    id="siren-epr"
+                    class="form-input"
+                    placeholder="Entrez le Siren"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="siret-epr">Siret</label>
+                  <input
+                    type="text"
+                    id="siret-epr"
+                    class="form-input"
+                    placeholder="Entrez le Siret"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="raison-epr">Raison sociale</label>
+                  <input
+                    type="text"
+                    id="raison-epr"
+                    class="form-input"
+                    placeholder="Entrez la raison sociale"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="forme-epr">Forme juridique</label>
+                  <input
+                    type="text"
+                    id="forme-epr"
+                    class="form-input"
+                    placeholder="Entrez la forme juridique"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adresse-epr">Adresse normée ligne 1</label>
+                  <input
+                    type="text"
+                    id="adresse-epr"
+                    class="form-input"
+                    placeholder="Entrez l'adresse"
+                  />
+                </div>
+              </div>
+              <button
+                class="btn btn-primary"
+                onclick="ajouterEntreprisePrivee()"
+              >
+                Ajouter
+              </button>
+            </div>
+            <div class="table-container">
+              <div class="table-responsive">
+                <table id="entreprises-privees-table">
+                  <thead>
+                    <tr>
+                      <th>Siren</th>
+                      <th>Siret</th>
+                      <th>Raison sociale</th>
+                      <th>Forme juridique</th>
+                      <th>Adresse normée ligne 1</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="6">
+                        <div class="empty-state">
+                          <div class="empty-state-icon"></div>
+                          <div class="empty-state-text">
+                            Aucune entreprise privée
+                          </div>
+                          <div class="empty-state-subtext">
+                            Ajoutez votre première entreprise privée ci-dessus
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="association" class="tab-content">
+            <h2 class="tab-title">Associations</h2>
+            <div class="form-container">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="siren-assoc">Siren</label>
+                  <input
+                    type="text"
+                    id="siren-assoc"
+                    class="form-input"
+                    placeholder="Entrez le Siren"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="siret-assoc">Siret</label>
+                  <input
+                    type="text"
+                    id="siret-assoc"
+                    class="form-input"
+                    placeholder="Entrez le Siret"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="raison-assoc">Raison sociale</label>
+                  <input
+                    type="text"
+                    id="raison-assoc"
+                    class="form-input"
+                    placeholder="Entrez la raison sociale"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nature-assoc">Nature établissement</label>
+                  <input
+                    type="text"
+                    id="nature-assoc"
+                    class="form-input"
+                    placeholder="Entrez la nature de l'établissement"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adresse-assoc">Adresse</label>
+                  <input
+                    type="text"
+                    id="adresse-assoc"
+                    class="form-input"
+                    placeholder="Entrez l'adresse"
+                  />
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="ajouterAssociation()">
+                Ajouter
+              </button>
+            </div>
+            <div class="table-container">
+              <div class="table-responsive">
+                <table id="associations-table">
+                  <thead>
+                    <tr>
+                      <th>Siren</th>
+                      <th>Siret</th>
+                      <th>Raison sociale</th>
+                      <th>Nature établissement</th>
+                      <th>Adresse</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="6">
+                        <div class="empty-state">
+                          <div class="empty-state-icon"></div>
+                          <div class="empty-state-text">Aucune association</div>
+                          <div class="empty-state-subtext">
+                            Ajoutez votre première association ci-dessus
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="personnes" class="tab-content">
+            <h2 class="tab-title">Personnes</h2>
+            <div class="form-container">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="nom">Nom</label>
+                  <input
+                    type="text"
+                    id="nom"
+                    class="form-input"
+                    placeholder="Entrez le nom"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adresse">Adresse</label>
+                  <input
+                    type="text"
+                    id="adresse"
+                    class="form-input"
+                    placeholder="Entrez l'adresse"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="numero">Numéro</label>
+                  <input
+                    type="text"
+                    id="numero"
+                    class="form-input"
+                    placeholder="Entrez le numéro"
+                  />
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="ajouterPersonne()">
+                Ajouter
+              </button>
+            </div>
+            <div class="table-container">
+              <div class="table-responsive">
+                <table id="personnes-table">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Adresse</th>
+                      <th>Numéro</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4">
+                        <div class="empty-state">
+                          <div class="empty-state-icon"></div>
+                          <div class="empty-state-text">Aucune personne</div>
+                          <div class="empty-state-subtext">
+                            Ajoutez votre première personne ci-dessus
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <footer class="site-footer">
+      <div class="footer-content">
+        © 2024 Harry Blanger, Saël Lanclume & Nicolas Bissainte — Auteurs du
+        site et propriétaires des données.
+      </div>
+    </footer>
+  </body>
+</html>

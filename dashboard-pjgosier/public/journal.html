@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal de bord - Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <div class="header-content">
+          <div class="logo">Dashboard</div>
+          <nav class="main-nav">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="analyses.html" class="nav-link">Analyses</a>
+            <a href="journal.html" class="nav-link active">Journal de bord</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="about.html" class="nav-link">À propos</a>
+          </nav>
+        </div>
+      </header>
+      <div class="journal-section">
+        <h2>Journal de bord</h2>
+        <div class="journal-period">
+          <h3>Phase 1 – Consolidation et structuration des données</h3>
+          <div class="journal-entry">
+            <div class="journal-meta">
+              <span class="journal-date">14/05/2025</span> —
+              <span class="journal-author">Nicolas</span>
+            </div>
+            <div class="journal-body">
+              <strong>Difficulté :</strong> Il a été difficile de canaliser les discussions du groupe, qui partaient souvent dans toutes les directions.<br />
+              <strong>Solution :</strong> Mise en place d’une dictature plus rigoureuse, avec la désignation d’un seul référent de séance pour maintenir le fil conducteur.<br />
+              <strong>Avis général :</strong> L’expérience a permis de mieux comprendre l’importance d’un cadre clair et strict pour que chacun travaille efficacement.          
+            </div>
+          </div>
+          
+          <div class="journal-entry">
+            <div class="journal-meta">
+              <span class="journal-date">28/05/2025</span> —
+              <span class="journal-author">Saël</span>
+            </div>
+            <div class="journal-body">
+              <strong>Difficulté :</strong> Import des données SIRENE : de
+              nombreux champs étaient mal formatés.<br />
+              <strong>Solution :</strong> Après plusieurs essais, nous avons
+              développé un script Python pour nettoyer et normaliser les données.<br />
+              <strong>Avis général :</strong> Bonne collaboration, chacun a proposé
+              des idées pour avancer plus vite.
+            </div>
+          </div>
+          <div class="journal-entry">
+            <div class="journal-meta">
+              <span class="journal-date">28/05/2025</span> —
+              <span class="journal-author">Nicolas</span>
+            </div>
+            <div class="journal-body">
+              <strong>Difficulté :</strong> Beaucoup de doublons dans les
+              données « personnes » (pages blanches).<br />
+              <strong>Solution :</strong> Utilisation d'un algorithme de
+              dédoublonnage basé sur le nom et l'adresse. Résultat : base
+              beaucoup plus propre !<br />
+              <strong>Avis général :</strong> Un peu de frustration au début, mais
+              satisfaction après avoir vu le résultat.
+            </div>
+          </div>
+          <div class="journal-entry">
+            <div class="journal-meta">
+              <span class="journal-date">28/05/2025</span> —
+              <span class="journal-author">Harry</span>
+            </div>
+            <div class="journal-body">
+              <strong>Difficulté :</strong> Les données d'associations étaient
+              incomplètes et parfois obsolètes.<br />
+              <strong>Solution :</strong> Recherche de sources complémentaires
+              (site du Gosier) et fusion des fichiers pour obtenir une table
+              plus fiable.<br />
+              <strong>Avis général :</strong> L'équipe a fait preuve de rigueur et d'une bonne collaboration pour surmonter les difficultés rencontrées lors du traitement des données.
+            </div>
+          </div>
+          <div class="journal-objective">
+            <div class="objective-content">
+              Objectif de fin de séance :
+              <em>Avoir 3 tables homogènes, exploitables et documentées.</em>
+            </div>
+            <div class="objective-controls">
+              <div class="objective-status success">
+                <span class="objective-icon">✓</span>
+                <span>Terminé</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="journal-period">
+          <h3>Phase 2 – Analyse des entreprises du Gosier</h3>
+          <div class="journal-objective">
+            <div class="objective-content">
+              Objectif de fin de séance :
+              <em
+                >Objectif de fin de séance : Un tableau de profilage clair +
+                premiers graphiques de répartition.</em
+              >
+            </div>
+            <div class="objective-controls">
+              <div class="objective-status pending">
+                <span class="objective-icon">⏳ </span>
+                <span>En cours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-content">
+        © 2024 Harry Blanger, Saël Lanclume & Nicolas Bissainte — Auteurs du
+        site et propriétaires des données.
+      </div>
+    </footer>
+  </body>
+</html>
